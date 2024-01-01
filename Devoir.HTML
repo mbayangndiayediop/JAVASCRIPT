@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="calculatorForm">
+        <label for="number1">Nombre 1:</label>
+        <input type="text" id="number1" name="number1" required pattern="\d+(\.\d+)?" title="Entrez un nombre">
+
+        <label for="number2">Nombre 2:</label>
+        <input type="text" id="number2" name="number2" required pattern="\d+(\.\d+)?" title="Entrez un nombre autre que 0">
+
+        <button type="button" onclick="calculate()">Calculer</button>
+    </form>
+
+    <h2>Résultats :</h2>
+    <p id="sum"></p>
+    <p id="product"></p>
+    <p id="division"></p>
+    <p id="subtraction"></p>
+
+    <script>
+        function calculate() {
+            // Récupérer les valeurs des champs
+            var num1 = parseFloat(document.getElementById('number1').value);
+            var num2 = parseFloat(document.getElementById('number2').value);
+
+            // Vérifier si les valeurs sont des nombres
+            if (isNaN(num1) || isNaN(num2)) {
+                alert('Veuillez entrer des nombres valides.');
+                return;
+            }
+
+            // Vérifier la division par 0
+            if (num2 === 0) {
+                alert('Impossible de diviser par 0. Entrez un nombre différent de 0 pour le deuxième champ.');
+                return;
+            }
+
+            // Calculs
+            var sum = num1 + num2;
+            var product = num1 * num2;
+            var division = num1 / num2;
+            var subtraction = num1 - num2;
+
+            // Afficher les résultats
+            document.getElementById('sum').innerHTML = 'Somme : ' + sum;
+            document.getElementById('product').innerHTML = 'Multiplication : ' + product;
+            document.getElementById('division').innerHTML = 'Division : ' + division;
+            document.getElementById('subtraction').innerHTML = 'Soustraction : ' + subtraction;
+        }
+    </script>
+
+</body>
+</html>
